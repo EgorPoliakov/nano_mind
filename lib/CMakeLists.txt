@@ -1,2 +1,4 @@
 add_subdirectory(loss_functions)
 add_subdirectory(layers)
+add_subdirectory(core)
+add_subdirectory(algorithms)

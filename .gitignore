@@ -49,3 +49,4 @@ build/**/*
 bin/*
 test/test_runner
 *.zip
+.vscode

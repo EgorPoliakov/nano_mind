@@ -1,4 +1,5 @@
 #include <relu_layer.h>
+#include <parameter.h>
 
 ReLULayer::ReLULayer(int in_dim) :
     in_dim_(in_dim), layer_idx_(-1) {

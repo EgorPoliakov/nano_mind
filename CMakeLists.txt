@@ -5,13 +5,12 @@ include(CTest)
 enable_testing()
 
 add_subdirectory(lib)
+add_subdirectory(vendor)
+add_subdirectory(tests)
+
 add_executable(nano_mind main.cpp 
-    src/parameter.cpp
-    src/topological_sort.cpp
-    src/neuron.cpp
     src/tests.cpp
     src/sgd_optimizer.cpp
-    src/model.cpp
 )
 set(CMAKE_C_FLAGS_DEBUG "-g -DDEBUG")
 set(CMAKE_CXX_FLAGS_DEBUG "-g -DDEBUG")
@@ -24,4 +23,4 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
-target_link_libraries(nano_mind layers loss_functions)
+target_link_libraries(nano_mind layers loss_functions core algorithms)

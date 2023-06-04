@@ -23,6 +23,7 @@ public:
 
     Parameter* tanh();
     Parameter* relu();
+    Parameter* sigmoid();
     Parameter* pow(int power);
     std::function<void()> backward_;
     float grad_;

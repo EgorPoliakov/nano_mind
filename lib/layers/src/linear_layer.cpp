@@ -1,4 +1,5 @@
 #include <linear_layer.h>
+#include <parameter.h>
 #include <random>
 #include <math.h>
 #include <iostream>

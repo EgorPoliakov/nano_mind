@@ -103,3 +103,13 @@ Parameter* Parameter::relu() {
 
     return out;
 }
+
+Parameter* Parameter::sigmoid() {
+    float sigmoid = 1.f / (1.f + std::exp(-data_));
+    float d_sigmoid = sigmoid * (1 - sigmoid);
+    Parameter* out = new Parameter(sigmoid, {this}, 's');
+    out->backward_ = [out, this, d_sigmoid]() {
+        grad_ += out->grad_ * d_sigmoid;
+    };
+    return out;
+}
