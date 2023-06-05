@@ -9,7 +9,6 @@ add_subdirectory(vendor)
 add_subdirectory(tests)
 
 add_executable(nano_mind main.cpp 
-    src/tests.cpp
     src/sgd_optimizer.cpp
 )
 set(CMAKE_C_FLAGS_DEBUG "-g -DDEBUG")

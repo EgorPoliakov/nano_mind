@@ -20,10 +20,12 @@ public:
     // Parameter operator*(float other);
 
     Parameter* operator-(Parameter* other);
+    Parameter* operator/(Parameter* other);
 
     Parameter* tanh();
     Parameter* relu();
     Parameter* sigmoid();
+    Parameter* exp();
     Parameter* pow(int power);
     std::function<void()> backward_;
     float grad_;

@@ -73,6 +73,16 @@ Parameter* Parameter::operator*(Parameter* other) {
     return out;
 }
 
+Parameter* Parameter::operator/(Parameter* other) {
+    Parameter* out = new Parameter(data_ / other->data_, {this, other}, '/');
+    out->backward_ = [this, other, out]() {
+        grad_ += out->grad_ * 1 / other->data_;
+        other->grad_ += out->grad_ * -data_ / std::pow(other->data_, 2);
+    };
+    
+    return out;
+}
+
 Parameter* Parameter::pow(int power) {
     Parameter* out = new Parameter(std::pow(data_, power), {this}, 'p');
     float d_power = power * data_;
@@ -110,6 +120,16 @@ Parameter* Parameter::sigmoid() {
     Parameter* out = new Parameter(sigmoid, {this}, 's');
     out->backward_ = [out, this, d_sigmoid]() {
         grad_ += out->grad_ * d_sigmoid;
+    };
+    return out;
+}
+
+Parameter* Parameter::exp() {
+    float exp = std::exp(data_);
+    float d_exp = exp;
+    Parameter* out = new Parameter(exp, {this}, 'e');
+    out->backward_ = [out, this, d_exp]() {
+        grad_ += out->grad_ * d_exp;
     };
     return out;
 }

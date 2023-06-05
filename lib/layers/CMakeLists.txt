@@ -3,6 +3,7 @@ add_library(layers
     src/linear_layer.cpp
     src/relu_layer.cpp
     src/sigmoid_layer.cpp
+    src/softmax.cpp
 )
 
 target_include_directories(layers PUBLIC 

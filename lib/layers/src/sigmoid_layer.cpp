@@ -10,7 +10,7 @@ std::vector<Parameter*> SigmoidLayer::operator()(std::vector<Parameter*> x)  {
     outputs.resize(in_dim_);
     for (int i = 0; i < x.size(); i++) {
         outputs[i] = x[i]->sigmoid();
-        outputs[i]->label_ = "sigmoids_" + std::to_string(layer_idx_) + "_" + std::to_string(i);
+        outputs[i]->label_ = "sigmoid_" + std::to_string(layer_idx_) + "_" + std::to_string(i);
     }
     return outputs;
 }
