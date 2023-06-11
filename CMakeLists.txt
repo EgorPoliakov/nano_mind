@@ -22,4 +22,4 @@ set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
 
-target_link_libraries(nano_mind layers loss_functions core algorithms)
+target_link_libraries(nano_mind loss_functions layers core algorithms)

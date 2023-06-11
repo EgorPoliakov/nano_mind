@@ -33,6 +33,16 @@ float exp(float x) {
     return result;
 }
 
+float log(float x) {
+    Parameter* param = new Parameter(x);
+    Parameter* out = param->log();
+    float result = out->data_;
+
+    delete param;
+    delete out;
+    return result;
+}
+
 std::vector<float> softmax(std::vector<float> x) {
     std::vector<Parameter*> input(x.size());
     for (int i = 0; i < x.size(); i++) {
@@ -84,4 +94,8 @@ TEST(ActivationFunctions, Softmax) {
 
 TEST(ActivationFunctions, Exp) {
     EXPECT_NEAR(exp(4.f), 54.598, 0.001);
+}
+
+TEST(ActivationFunctions, Log) {
+    EXPECT_NEAR(log(4.f), 1.386, 0.001);
 }

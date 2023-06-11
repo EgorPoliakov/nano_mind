@@ -13,6 +13,16 @@ float add(float a, float b) {
     return result;
 }
 
+float subtract_unary(float a) {
+    Parameter* param_a = new Parameter(a);
+    Parameter* out = -*param_a;
+    float result = out->data_;
+
+    delete param_a;
+    delete out;
+    return result;
+}
+
 float multiply(float a, float b) {
     Parameter* param_a = new Parameter(a);
     Parameter* param_b = new Parameter(b);
@@ -37,8 +47,14 @@ float divide(float a, float b) {
     return result;
 }
 
+
+
 TEST(ArithmeticFunctions, Add) {
     EXPECT_EQ(add(5.4f, 3.6f), 9.f);
+}
+
+TEST(ArithmeticFunctions, SubtractUnary) {
+    EXPECT_EQ(subtract_unary(5.4f), -5.4f);
 }
 
 TEST(ArithmeticFunctions, Multiply) {

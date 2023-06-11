@@ -1,5 +1,6 @@
 #include <model.h>
 #include <layer.h>
+#include <iostream>
 
 void Model::add_layer(Layer* layer) {
     layer->set_layer_idx(layer_idx_);

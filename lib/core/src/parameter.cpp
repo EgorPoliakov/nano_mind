@@ -63,6 +63,14 @@ Parameter* Parameter::operator-(Parameter* other) {
     return out;
 }
 
+Parameter* Parameter::operator-() {
+    Parameter* out = new Parameter(-data_, {this}, 'u');
+    out->backward_ = [this, out]() {
+        grad_ += -out->grad_;
+    };
+    return out;
+}
+
 Parameter* Parameter::operator*(Parameter* other) {
     Parameter* out = new Parameter(data_ * other->data_, {this, other}, '*');
     out->backward_ = [this, other, out]() {
@@ -88,6 +96,15 @@ Parameter* Parameter::pow(int power) {
     float d_power = power * data_;
     out->backward_ = [out, this, d_power]() {
         grad_ = out->grad_ * d_power;
+    };
+    return out;
+}
+
+Parameter* Parameter::log() {
+    Parameter* out = new Parameter(std::log(data_), {this}, 'l');
+    float d_log = 1.f / data_;
+    out->backward_ = [out, this, d_log]() {
+        grad_ = out->grad_ * d_log;
     };
     return out;
 }
