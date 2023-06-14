@@ -8,21 +8,12 @@
 #include <model.h>
 #include <cross_entropy_loss.h>
 #include <mnist_reader.hpp>
+#include <utils.h>
 
-std::pair<float, int> argmax(std::vector<Parameter*> x) {
-    float max_value = x[0]->data_;
-    int max_idx = 0;
-    for (int i = 0; i < x.size(); i++) {
-        if (x[i]->data_ > max_value) {
-            max_idx = i;
-            max_value = x[i]->data_;
-        }
-    }
-    return {max_value, max_idx};
-}
+
 
 int main(int, char**) {
-    auto mnist_dataset = mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>("/home/egor/nano_mind/mnist_dataset");
+    auto mnist_dataset = mnist::read_dataset<std::vector, std::vector, uint8_t, uint8_t>("/home/egor_poliakov/nano_mind/mnist_dataset");
     int num_classes = 10;
     int image_size = mnist_dataset.test_images[0].size();
     Model model;
@@ -93,7 +84,7 @@ int main(int, char**) {
             }
             std::vector<Parameter*> model_out = model(input_pointers);
             Parameter* loss = criterion(model_out, &label);
-            int predicted_label = argmax(model_out).second;
+            int predicted_label = nano_mind::argmax(model_out).second;
             // if (sample % 100 == 0) {
             //     std::cout << "Finished 100 samples test" << std::endl;
             // }
