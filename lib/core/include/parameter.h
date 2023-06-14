@@ -34,6 +34,10 @@ public:
     float data_;
     std::vector<Parameter*> children_;
     std::string label_;
+
+    void train();
+    void eval();
+    bool train_ = true;
 private:
     char op_;
     

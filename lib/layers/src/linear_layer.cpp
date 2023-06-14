@@ -39,9 +39,9 @@ void LinearLayer::set_layer_idx(int idx) {
 }
 
 LinearLayer::~LinearLayer() {
-    for (Neuron* neuron : neurons_) {
-        delete neuron;
-        neuron = nullptr;
+    for (int i = 0; i < neurons_.size(); i++) {
+        delete neurons_[i];
+        neurons_[i] = nullptr;
     }
 }
 
@@ -62,4 +62,16 @@ std::vector<Parameter*> LinearLayer::parameters() {
         layer_parameters.push_back(neuron->bias_);
     }
     return layer_parameters;
+}
+
+void LinearLayer::train() {
+    for (Neuron* neuron : neurons_) {
+        neuron->train();
+    }
+}
+
+void LinearLayer::eval() {
+    for (Neuron* neuron : neurons_) {
+        neuron->eval();
+    }
 }

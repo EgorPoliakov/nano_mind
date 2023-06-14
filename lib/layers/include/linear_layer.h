@@ -13,6 +13,8 @@ public:
     std::vector<Neuron*> neurons_;
     void label_parameters() override;
     void set_layer_idx(int idx) override;
+    void train() override;
+    void eval() override;
     int layer_idx_;
 private:
     

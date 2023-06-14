@@ -170,6 +170,21 @@ std::vector<float> cross_entropy_derivative(std::vector<float> x, float label) {
     return result;
 }
 
+std::pair<float, float> eval_mode_multiply_derivative(float a, float b) {
+    Parameter* param_a = new Parameter(a);
+    Parameter* param_b = new Parameter(b);
+    param_a->eval();
+    param_b->eval();
+    Parameter* out = *param_a * param_b;
+    out->backward();
+
+    std::pair<float, float> result = {param_a->grad_, param_b->grad_};
+
+    delete param_a;
+    delete param_b;
+    return result;
+}
+
 TEST(Derivatives, Sigmoid) {
     EXPECT_NEAR(sigmoid_derivative(1.f), 0.196, 0.001);
 }
@@ -236,4 +251,8 @@ TEST(Derivatives, Divide) {
     EXPECT_NEAR(result.second, -0.013f, 0.001f);
 }
 
-
+TEST(Derivatives, EvalModeMultiply) {
+    std::pair<float, float> result = eval_mode_multiply_derivative(23.f, 42.f);
+    EXPECT_EQ(result.first, 0);
+    EXPECT_EQ(result.second, 0);
+}

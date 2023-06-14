@@ -10,9 +10,9 @@ Neuron::Neuron(int in_dim) :
 };
 
 Neuron::~Neuron() {
-    for (Parameter* parameter : weight_) {
-        delete parameter;
-        parameter = nullptr;
+    for (int i = 0; i < weight_.size(); i++) {
+        delete weight_[i];
+        weight_[i] = nullptr;
     }
 
     delete bias_;
@@ -32,4 +32,16 @@ Parameter* Neuron::operator()(std::vector<Parameter*> x) {
     mult_sum = *mult_sum + bias_;
     mult_sum->label_ = "neuron_out_" + std::to_string(layer_idx_) + "_" + std::to_string(neuron_idx_);
     return mult_sum;
+}
+
+void Neuron::train() {
+    for (Parameter* parameter : weight_) {
+        parameter->train();
+    }
+}
+
+void Neuron::eval() {
+    for (Parameter* parameter : weight_) {
+        parameter->eval();
+    }
 }
