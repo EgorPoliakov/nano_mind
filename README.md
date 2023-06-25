@@ -1,6 +1,6 @@
 # Nano Mind: Simple Deep Learning Framework in C++
 
-Welcome to Nano Mind, a minimalistic deep learning framework implemented from scratch in C++. This repository provides a simple implementation of a deep learning framework and is intended for educational purposes and serves as a learning tool for understanding the fundamental concepts of deep learning and implementing a neural network framework from scratch.
+Welcome to Nano Mind, a minimalistic deep learning framework implemented from scratch in C++. This repository provides a simple implementation of a deep learning framework and serves as a learning tool for understanding the fundamental concepts of deep learning and implementing a neural network framework from scratch.
 
 ## Features
 
