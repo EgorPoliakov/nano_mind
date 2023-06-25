@@ -36,7 +36,7 @@ void Parameter::backward() {
             order[i]->backward_();
         }
 
-        if (!order[i]->children_.empty()) {
+        if (!order[i]->children_.empty() || order[i]->op_ == 'd') {
             delete order[i];
             order[i] = nullptr;
         }

@@ -4,10 +4,7 @@
 
 
 Model::~Model() {
-    for (int i = 0; i < layers_.size(); i++) {
-        delete layers_[i];
-        layers_[i] = nullptr;
-    }
+    
 }
 
 void Model::add_layer(Layer* layer) {

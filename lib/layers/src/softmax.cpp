@@ -16,7 +16,7 @@ std::vector<Parameter*> SoftmaxLayer::operator()(std::vector<Parameter*> x)  {
         Parameter* exp = x[i]->exp();
         exponents.push_back(exp);
         exp->label_ = "softmax_exp_" + std::to_string(layer_idx_) + "_" + std::to_string(i);
-        sum = *sum + x[i]->exp();
+        sum = *sum + exp;
         sum->label_ = "softmax_sum_" + std::to_string(layer_idx_) + "_" + std::to_string(i - 1);
     }
 

@@ -14,6 +14,7 @@ LinearLayer::LinearLayer(int in_dim, int out_dim) :
     
     for (int i = 0; i < out_dim; i++) {
         Neuron* neuron = new Neuron(in_dim);
+        neuron->neuron_idx_ = i;
         for (int i = 0; i < in_dim; i++) {
             neuron->weight_[i] = new Parameter(distribution(gen));
         }
